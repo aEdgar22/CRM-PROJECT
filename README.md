@@ -1,4 +1,4 @@
-¡Bienvenido al proyecto CRM! Aquí encontrarás toda la información necesaria para poner en marcha tanto el frontend como el backend de la aplicación.
+# ¡Bienvenido al proyecto CRM! Aquí encontrarás toda la información necesaria para poner en marcha tanto el frontend como el backend de la aplicación.
 
 Iniciar la aplicación
 Para iniciar tanto el frontend como el backend, debes ejecutar el siguiente comando en la terminal:
