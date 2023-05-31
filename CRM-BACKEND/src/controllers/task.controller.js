@@ -2,28 +2,13 @@ import User from '../models/model.user.js';
 import Task from '../models/model.task.js';
 
 // Obtener todas las tareas de un usuario
-/* export const getUserTasks = async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    const user = await User.findByPk(userId, { include: Task });
-    if (user) {
-      res.json(user.Tasks);
-    } else {
-      res.status(404).json({ message: 'Usuario no encontrado' });
-    }
-  } catch (error) {
-    console.error(error);
-    res.status(400).json({ message: 'Error al obtener las tareas del usuario' });
-  }
-}; */
-
 export const getTasksByUser = async (req, res) => {
   const { userId } = req.params;
 
   try {
     // Verificar si el usuario existe
     const user = await User.findByPk(userId);
+
     if (!user) {
       return res.status(404).json({ error: 'Usuario no encontrado' });
     }
@@ -45,9 +30,10 @@ export const createTaskForUser = async (req, res) => {
   try {
     const user = await User.findByPk(userId);
     if (user) {
-      const { title, deadline, status, assignedTo } = req.body;
-      const task = await Task.create({ title, deadline, status, userId, assignedTo });
+      const { title, deadline, status } = req.body;
+      const task = await Task.create({ title, deadline, status, userId });
       res.status(201).json(task);
+
     } else {
       res.status(404).json({ message: 'Usuario no encontrado' });
     }

@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import sequelize from '../config.js';
-/* import User from './model.user.js'; */
+import User from './model.user.js';
 
 // Define la definición de `Task` solamente una vez
 const Task = sequelize.define('Task', {
@@ -21,12 +21,15 @@ const Task = sequelize.define('Task', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  userId:{
+    type: DataTypes.INTEGER,
+    allowNull: false
+  }
 });
 
-// Importa el modelo User
-import User from './model.user.js';
+Task.associate = (models) => {
+  Task.belongsTo(models.User, { foreignKey: 'userId', });
+};
 
-// Establecer la asociación entre User y Task
-Task.belongsTo(User, { foreignKey: 'userId' });
 
 export default Task;

@@ -1,4 +1,5 @@
 import Comment from '../models/model.comments.js';
+import User from '../models/model.user.js';
 
 // Obtener todos los comentarios de un usuario
 export const getUserComments = async (req, res) => {
@@ -18,8 +19,17 @@ export const createCommentForUser = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const comment = await Comment.create({ ...req.body, UserId: userId });
-    res.status(201).json(comment);
+    const user = await User.findByPk(userId);
+
+    if (user) {
+      const { text } = req.body;
+      
+      const comment = await Comment.create({ text, userId: userId });
+      res.status(201).json(comment);
+
+    } else {
+      res.status(404).json({ message: 'Usuario no encontrado' });
+    }
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: 'Error al crear el comentario para el usuario' });

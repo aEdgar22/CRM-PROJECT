@@ -12,9 +12,12 @@ const Comment = sequelize.define('Comment', {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  }
 });
 
 Comment.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
-User.hasMany(Comment, { foreignKey: 'userId', sourceKey: 'id' });
 
 export default Comment;
