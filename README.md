@@ -24,4 +24,5 @@ Una vez que hayas completado los pasos anteriores, podrás iniciar la aplicació
 ## Authors
 
 - [@aEdgar22](https://github.com/aEdgar22)
+- [@Paulab3008](https://github.com/Paulab3008)
 
